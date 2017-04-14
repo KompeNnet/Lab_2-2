@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Lab_2_2
 {
@@ -11,6 +6,6 @@ namespace Lab_2_2
     {
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-        public Figures Tip { get; set; }
+        public Figures Type { get; set; }
     }
 }

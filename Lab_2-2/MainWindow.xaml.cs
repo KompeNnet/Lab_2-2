@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Lab_2_2.Drawers;
 
 namespace Lab_2_2
@@ -19,7 +9,7 @@ namespace Lab_2_2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public enum Figures { line, rectangle, square, ellipse, circle };
+    public enum Figures { Line, Rectangle, Square, Ellipse, Circle };
     public partial class MainWindow : Window
     {
         private delegate IDrawer DrawerCreator();
@@ -43,11 +33,11 @@ namespace Lab_2_2
             InitializeComponent();
             DrawerDictionary = new Dictionary<int, Controller>
             {
-                { 0, new Controller() { Name = "Line", FigureType = Figures.line, Creator = () => { return new LineDrawer(); } } },
-                { 1, new Controller() { Name = "Rectangle", FigureType = Figures.line, Creator = () => { return new RectangleDrawer(); } } },
-                { 2, new Controller() { Name = "Square", FigureType = Figures.line, Creator = () => { return new SquareDrawer(); } } },
-                { 3, new Controller() { Name = "Ellipse", FigureType = Figures.line, Creator = () => { return new EllipseDrawer(); } } },
-                { 4, new Controller() { Name = "Circle", FigureType = Figures.line, Creator = () => { return new CircleDrawer(); } } }
+                { 0, new Controller() { Name = "Line", FigureType = Figures.Line, Creator = () => { return new LineDrawer(); } } },
+                { 1, new Controller() { Name = "Rectangle", FigureType = Figures.Rectangle, Creator = () => { return new RectangleDrawer(); } } },
+                { 2, new Controller() { Name = "Square", FigureType = Figures.Square, Creator = () => { return new SquareDrawer(); } } },
+                { 3, new Controller() { Name = "Ellipse", FigureType = Figures.Ellipse, Creator = () => { return new EllipseDrawer(); } } },
+                { 4, new Controller() { Name = "Circle", FigureType = Figures.Circle, Creator = () => { return new CircleDrawer(); } } }
             };
         }
 
@@ -56,7 +46,7 @@ namespace Lab_2_2
             chosenType = (Figures)FiguresList.SelectedIndex;
         }
 
-        private void DrawPlace_MouseDown(object sender, MouseButtonEventArgs e)
+        private void DrawPlace_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (secondClick)
             {
@@ -66,7 +56,10 @@ namespace Lab_2_2
                 IDrawer currentDrawer = DrawerDictionary[FiguresList.SelectedIndex].Creator();
                 if (currentDrawer != null)
                 {
-                    //TODO
+                    currShape.StartPoint = firstPoint;
+                    currShape.EndPoint = endPoint;
+                    currShape.Type = chosenType;
+                    currentDrawer.Draw(DrawPlace, currShape);
                 }
             }
             if (firstClick)

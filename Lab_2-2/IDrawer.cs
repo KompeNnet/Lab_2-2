@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Controls;
 
 namespace Lab_2_2
 {
     interface IDrawer
     {
-        void Draw();
+        void Draw(Canvas DrawPlace, Shape shape);
         //TODO
     }
 }
