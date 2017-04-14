@@ -14,8 +14,10 @@ namespace Lab_2_2.Drawers
             figure.Fill = new SolidColorBrush(Colors.Beige);
             figure.Width = System.Math.Abs(shape.EndPoint.X - shape.StartPoint.X);
             figure.Height = System.Math.Abs(shape.EndPoint.Y - shape.StartPoint.Y);
-            Canvas.SetLeft(figure, shape.StartPoint.X);
-            Canvas.SetTop(figure, shape.StartPoint.Y);
+            if (shape.StartPoint.X < shape.EndPoint.X) Canvas.SetLeft(figure, shape.StartPoint.X);
+            else Canvas.SetLeft(figure, shape.EndPoint.X);
+            if (shape.StartPoint.Y < shape.EndPoint.Y) Canvas.SetTop(figure, shape.StartPoint.Y);
+            else Canvas.SetTop(figure, shape.EndPoint.Y);
             DrawPlace.Children.Add(figure);
         }
     }
