@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
+        <Canvas x:Name="DrawPlace" Background="White" MouseLeftButtonDown="DrawPlace_MouseLeftButtonDown"/>
         <ComboBox x:Name="FiguresList" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="105" SelectionChanged="FiguresList_SelectionChanged"/>
-        <Canvas x:Name="DrawPlace" MouseLeftButtonDown="DrawPlace_MouseLeftButtonDown"/>
     </Grid>
 </Window>
