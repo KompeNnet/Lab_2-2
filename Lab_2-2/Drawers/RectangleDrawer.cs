@@ -8,12 +8,12 @@ namespace Lab_2_2.Drawers
     {
         public void Draw(Canvas DrawPlace, Shape shape)
         {
-            Ellipse figure = new Ellipse();
+            Rectangle figure = new Rectangle();
             figure.StrokeThickness = 2;
             figure.Stroke = new SolidColorBrush(Colors.RosyBrown);
             figure.Fill = new SolidColorBrush(Colors.Beige);
             figure.Width = System.Math.Abs(shape.EndPoint.X - shape.StartPoint.X);
-            figure.Height = figure.Width;
+            figure.Height = System.Math.Abs(shape.EndPoint.Y - shape.StartPoint.Y);
             Canvas.SetLeft(figure, shape.StartPoint.X);
             Canvas.SetTop(figure, shape.StartPoint.Y);
             DrawPlace.Children.Add(figure);
