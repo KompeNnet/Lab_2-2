@@ -19,9 +19,9 @@ namespace Lab_2_2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    public enum Figures { line, rectangle, square, ellipse, circle };
     public partial class MainWindow : Window
     {
-        public enum Figures { line, rectangle, square, ellipse, circle };
         private delegate IDrawer DrawerCreator();
         struct Controller
         {
@@ -41,8 +41,53 @@ namespace Lab_2_2
         public MainWindow()
         {
             InitializeComponent();
-            DrawerDictionary = new Dictionary<int, Controller>();
-            DrawerDictionary.Add(0, new Controller() { Name = "line", FigureType = Figures.line, Creator = () => { return new LineDrawer(); } });
+            DrawerDictionary = new Dictionary<int, Controller>
+            {
+                { 0, new Controller() { Name = "Line", FigureType = Figures.line, Creator = () => { return new LineDrawer(); } } },
+                { 1, new Controller() { Name = "Rectangle", FigureType = Figures.line, Creator = () => { return new RectangleDrawer(); } } },
+                { 2, new Controller() { Name = "Square", FigureType = Figures.line, Creator = () => { return new SquareDrawer(); } } },
+                { 3, new Controller() { Name = "Ellipse", FigureType = Figures.line, Creator = () => { return new EllipseDrawer(); } } },
+                { 4, new Controller() { Name = "Circle", FigureType = Figures.line, Creator = () => { return new CircleDrawer(); } } }
+            };
         }
+
+        private void FiguresList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            chosenType = (Figures)FiguresList.SelectedIndex;
+        }
+
+        private void DrawPlace_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (secondClick)
+            {
+                buf = true;
+                endPoint = e.GetPosition(this);
+                secondClick = false;
+                IDrawer currentDrawer = DrawerDictionary[FiguresList.SelectedIndex].Creator();
+                if (currentDrawer != null)
+                {
+                    //TODO
+                }
+            }
+            if (firstClick)
+            {
+                firstClick = false;
+                firstPoint = e.GetPosition(this);
+                secondClick = true;
+            }
+            if (buf)
+            {
+                buf = false;
+                firstClick = true;
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in DrawerDictionary)
+                FiguresList.Items.Add(DrawerDictionary[item.Key].Name);
+            FiguresList.SelectedIndex = 0;
+        }
+
     }
 }

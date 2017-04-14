@@ -5,15 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_2_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
-        <ComboBox x:Name="FiguresList" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="105" SelectedIndex="0">
-            <ComboBoxItem Content="Line"/>
-            <ComboBoxItem Content="Rectangle"/>
-            <ComboBoxItem Content="Square"/>
-            <ComboBoxItem Content="Ellipse"/>
-            <ComboBoxItem Content="Circle"/>
-        </ComboBox>
-        <Canvas/>
+        <ComboBox x:Name="FiguresList" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="105" SelectionChanged="FiguresList_SelectionChanged"/>
+        <Canvas x:Name="DrawPlace" MouseDown="DrawPlace_MouseDown"/>
     </Grid>
 </Window>
